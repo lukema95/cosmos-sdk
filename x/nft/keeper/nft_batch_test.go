@@ -58,7 +58,7 @@ func (s *TestSuite) TestBatchMint() {
 			true,
 		},
 		{
-			"faild with repeated nft",
+			"failed with repeated nft",
 			func(tokens []nft.NFT) {
 				s.saveClass(tokens)
 			},
@@ -70,7 +70,7 @@ func (s *TestSuite) TestBatchMint() {
 			false,
 		},
 		{
-			"faild with not exist class",
+			"failed with not exist class",
 			func(tokens []nft.NFT) {
 				// do nothing
 			},
@@ -82,7 +82,7 @@ func (s *TestSuite) TestBatchMint() {
 			false,
 		},
 		{
-			"faild with exist nft",
+			"failed with exist nft",
 			func(tokens []nft.NFT) {
 				s.saveClass(tokens)
 				idx := rand.Intn(len(tokens))
@@ -243,6 +243,18 @@ func (s *TestSuite) TestBatchUpdate() {
 			},
 			[]nft.NFT{
 				{ClassId: "classID1", Id: "nftID1", Uri: "nftID1_URI"},
+				{ClassId: "classID2", Id: "nftID2", Uri: "nftID2_URI"},
+			},
+			false,
+		},
+		{
+			"failed with repeated nft",
+			func() {
+				s.saveClass(tokens)
+			},
+			[]nft.NFT{
+				{ClassId: "classID1", Id: "nftID1", Uri: "nftID1_URI"},
+				{ClassId: "classID2", Id: "nftID2", Uri: "nftID2_URI"},
 				{ClassId: "classID2", Id: "nftID2", Uri: "nftID2_URI"},
 			},
 			false,
